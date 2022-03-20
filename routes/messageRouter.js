@@ -7,5 +7,6 @@ router.get('/id/:id', messageController.getMessageById)
 router.get('/root', messageController.getRootMessages)
 router.get('/child/:parent_id', messageController.getChildMessages)
 router.post('/', messageController.addMessage)
+router.put('/id/:id',messageController.updateMessage)
 
 module.exports = router

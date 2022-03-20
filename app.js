@@ -26,7 +26,7 @@ messageRepo.init(database)
 
 // set routes
 app.get('/', (req,res) => {res.send('Hello World!')})
-app.use('/message', messageRouter)
+app.use('/messages', messageRouter)
 
 
 app.listen(config.APP.port, () => {

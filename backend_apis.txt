@@ -1,0 +1,46 @@
+Backend APIS
+
+GET /messages
+query params: {
+    search:
+    offset:
+    limit:
+}
+returns list of messages
+
+
+GET /messages/id/:id
+returns message by id
+
+
+GET /messages/root
+returns list of root messages
+
+
+GET /messages/child/:id
+returns list of child messages of the message with the passed in id
+
+
+POST /messages
+body: {
+    "content": string,
+    "image_url": string,
+}
+creates a root message with parent_id
+
+
+POST /messages
+body: {
+    "content": string,
+    "image_url": string,
+    "parent_id": string
+}
+creates a child message with parent_id belonging to parent
+
+
+PUT /messages/id/:id
+body: {
+    "content": string,
+    "image_url": string,
+}
+update a message with id

@@ -64,4 +64,18 @@ messageRepo.init = (db) => {
     return res.rows
 }
 
+/**
+ * update message 
+ * @param {*} id 
+ * @param {*} content
+ * @param {*} image_url
+ */
+ messageRepo.updateMessage = async (id, content, image_url) => {
+    let res = null
+    if (content) res = await messageRepo.db.query(`UPDATE message SET content = $1 WHERE message_id = $2`, [content, id])
+    if (image_url) res = await messageRepo.db.query(`UPDATE message SET image_url = $1 WHERE message_id = $2`, [image_url, id])
+    return res.rows
+ }
+
+
 module.exports = messageRepo

@@ -30,19 +30,26 @@ const getChildMessages = async(req, res) => {
 // create a new message object
 const addMessage = async(req, res) => {
     if (!req.body.content) throw new Error('Message content missing!')
-
     // create root message object
     if (!req.body.parent_id) {
         const response = await messageRepo.addRootMessage(req.body.content, req.body.image_url)
         res.status(201).json(response)
         return
     }
-
     // create child message object
     const response = await messageRepo.addChildMessage(req.body.content, req.body.img_url, req.body.parent_id)
     res.status(201).json(response)
 }
 
+// update message 
+const updateMessage = async(req, res) => {
+    if (!req.params.id) throw new Error('Message id missing!')
+    if (!req.body.content && !req.body.image_url ) throw new Error('Message information missing!')
+
+    const response = await messageRepo.updateMessage(req.params.id, req.body.content, req.body.image_url)
+    res.status(200).json(response)
+}
+
 module.exports = {
-    getMessages, addMessage, getMessageById, getChildMessages, getRootMessages
+    getMessages, addMessage, getMessageById, getChildMessages, getRootMessages, updateMessage
 }
