@@ -1,7 +1,7 @@
 const express = require('express')
 const pg = require('pg')
+const cors = require('cors')
 const bodyParser = require("body-parser");
-
 
 const config = require('./config')
 const messageRouter = require('./routes/messageRouter')
@@ -9,8 +9,9 @@ const messageRepo = require('./datalayers/messageRepo')
 
 // initialise app
 const app = express()
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(cors())
 
 // initialise database
 const database = new pg.Pool({

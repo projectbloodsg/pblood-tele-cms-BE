@@ -7,7 +7,6 @@ messageRepo.init = (db) => {
 /**
  * Get message by id
  * @param {UUID} id 
- * @returns {message} message
  */
  messageRepo.getMessageById = async (id) => {
     const res = await messageRepo.db.query('SELECT * FROM "message" where message_id = $1', [id])
@@ -19,11 +18,28 @@ messageRepo.init = (db) => {
  * @param {*} limit 
  * @param {*} offset
  * @param {*} search 
- * @returns {message[]} messages
  */
  messageRepo.getMessages = async (limit = 20, offset = 0, search = '') => {
     const searchTerm = '%' + search + '%'
     const res = await messageRepo.db.query(`SELECT * FROM message WHERE "content" LIKE $1 LIMIT $2 OFFSET $3`, [searchTerm, limit, offset])
+    return res.rows
+}
+
+/**
+ * Get all root messages
+ */
+ messageRepo.getRootMessages = async () => {
+    const res = await messageRepo.db.query('SELECT * FROM "message" where parent_id IS NULL')
+    return res.rows
+}
+
+/**
+ * Get all child messages from a parent
+ * @param {*} parentId 
+ */
+ messageRepo.getChildMessages = async (parentId) => {
+    console.log(parentId);
+    const res = await messageRepo.db.query(`SELECT * FROM "message" where parent_id = $1`,[parentId])
     return res.rows
 }
 

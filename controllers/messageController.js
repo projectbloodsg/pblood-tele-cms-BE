@@ -1,40 +1,48 @@
 const messageRepo = require('../datalayers/messageRepo')
 
-// get messages by params
+// get messages by filters
 const getMessages = async(req, res) => {
     let response = null
-
-    if (req.query.id) { //if id is present
-        response = await messageRepo.getMessageById(req.query.id)
-    }
-    else {
-        response = await messageRepo.getMessages(req.query.limit, req.query.offset, req.query.search)
-    }
-
+    if (req.query.id) response = await messageRepo.getMessageById(req.query.id)
+    else response = await messageRepo.getMessages(req.query.limit, req.query.offset, req.query.search)
     res.status(200).json(response)
 }
 
 // get message by id 
-const getMessage = async(req, res) => {
-    
+const getMessageById = async(req, res) => {
+    const response = await messageRepo.getMessageById(req.params.id)
+    res.status(200).json(response)
+}
+
+// get root messages
+const getRootMessages = async(req, res) => {
+    const response = await messageRepo.getRootMessages()
+    res.status(200).json(response)
+}
+
+// get child messages
+const getChildMessages = async(req, res) => {
+    if (!req.params.parent_id) throw new Error('Missing parent_id')
+    const response = await messageRepo.getChildMessages(req.params.parent_id)
+    res.status(200).json(response)
 }
 
 // create a new message object
 const addMessage = async(req, res) => {
-
     if (!req.body.content) throw new Error('Message content missing!')
 
-    // create parent message object
+    // create root message object
     if (!req.body.parent_id) {
         const response = await messageRepo.addRootMessage(req.body.content, req.body.image_url)
         res.status(201).json(response)
         return
     }
 
+    // create child message object
     const response = await messageRepo.addChildMessage(req.body.content, req.body.img_url, req.body.parent_id)
     res.status(201).json(response)
 }
 
 module.exports = {
-    getMessages, addMessage
+    getMessages, addMessage, getMessageById, getChildMessages, getRootMessages
 }
