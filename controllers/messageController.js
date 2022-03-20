@@ -50,6 +50,24 @@ const updateMessage = async(req, res) => {
     res.status(200).json(response)
 }
 
+// delete message 
+const deleteMessage = async(req, res, next) => {
+    try {
+        if (!req.params.id) throw new Error('Message id missing!')
+
+        // check if got child 
+        const children = await messageRepo.getChildMessages(req.params.id)
+        if (children.length != 0) throw new Error('Cannot delete a parent message')
+    
+        const response = await messageRepo.deleteMessage(req.params.id)
+        res.status(200).json(response)    
+    }
+    catch(e){
+        next(e)
+    }
+}
+
+
 module.exports = {
-    getMessages, addMessage, getMessageById, getChildMessages, getRootMessages, updateMessage
+    getMessages, addMessage, getMessageById, getChildMessages, getRootMessages, updateMessage, deleteMessage
 }

@@ -44,3 +44,6 @@ body: {
     "image_url": string,
 }
 update a message with id
+
+DELETE /messages/id/:id
+update a message with id

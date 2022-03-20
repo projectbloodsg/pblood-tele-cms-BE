@@ -77,5 +77,15 @@ messageRepo.init = (db) => {
     return res.rows
  }
 
+ /**
+ * delete message with id, NOTE: CANNOT HAVE CHILDREN MESSAGES
+ * @param {*} id 
+ */
+  messageRepo.deleteMessage = async (id) => {
+    const res = await messageRepo.db.query(`DELETE FROM message WHERE message_id = $1`, [id])
+    return res.rows
+ }
+
+
 
 module.exports = messageRepo
