@@ -1,0 +1,23 @@
+{
+  "name": "pblood-tele-cms-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projectbloodsg/pblood-tele-cms-BE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/projectbloodsg/pblood-tele-cms-BE/issues"
+  },
+  "homepage": "https://github.com/projectbloodsg/pblood-tele-cms-BE#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

@@ -1,0 +1,15 @@
+const config = {
+    APP: {
+      port: 3001, 
+      name: 'Project Blood Telegram Bot CMS Backend'
+    },
+    DATABASE: {
+      host: 'localhost',
+      database: 'test',
+      password: 'password',
+      port: 5432,
+    }
+}
+
+console.log(config)
+module.exports = config;
