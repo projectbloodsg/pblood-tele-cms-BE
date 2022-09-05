@@ -1,0 +1,141 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: message; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.message (
+    message_id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
+    content text,
+    image_url character varying(50),
+    parent_id uuid
+);
+
+
+ALTER TABLE public.message OWNER TO postgres;
+
+--
+-- Data for Name: message; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.message (message_id, content, image_url, parent_id) FROM stdin;
+1ea32c45-e159-4568-a420-3e8e26019857	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		a8103017-ca02-41ca-b2bf-c4492e148a80
+085d2d88-09e3-4e41-be88-c1b6573fd030	Do you have diabetes🍭 or hypertension📈?		9001f0d9-6713-4f37-b409-bef41e2c3707
+c4bce6e1-0cb7-427f-950a-492470bff8c3	Yes		085d2d88-09e3-4e41-be88-c1b6573fd030
+c6f41c3c-1cc4-47c3-af59-1d2dce07412e	Here are some reasons why you may not be able to donate temporarily:		d9417399-3e9c-45ef-b8fe-c8cedfccef4b
+d9417399-3e9c-45ef-b8fe-c8cedfccef4b	Short-term reasons why you might be unable to donate		228e31ea-8060-4f51-8ec0-479c6e636577
+af77e978-4282-49a6-b072-4755af4516e1	Lets Start! Are you 16-60 years old? (Age is determined by birthday) A SIGNED parent consent form is needed for 16 and 17 year olds.🐣 \n hsa.gov.sg/parent_consent		935fa076-482e-47d9-a99f-9e467fa75270
+0d8a5cb6-a297-484a-970d-2c37fa02a9c6	Yes		af77e978-4282-49a6-b072-4755af4516e1
+0b64b51d-d777-40f5-a1bd-9378e2ad139c	No		af77e978-4282-49a6-b072-4755af4516e1
+251dcc24-280e-408e-8e3c-f3763733bbe6	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		0b64b51d-d777-40f5-a1bd-9378e2ad139c
+f92a4868-290a-4d59-9d44-6f9ff809fd1b	Are you generally in good health?👍\n (No symptoms of infection for at least one week, e.g. sore throat, cough, flu, diarrhoea, and no fever in the last 4 weeks)		64e903ef-986e-4da1-885f-44d271c52969
+4cf0bf46-7cab-4e85-942a-6f02ddc8d9e2	Yes		f92a4868-290a-4d59-9d44-6f9ff809fd1b
+c43c41a9-9bcc-4a5c-8fc2-f1de27bfd997	No		f92a4868-290a-4d59-9d44-6f9ff809fd1b
+6e6d06ab-bf09-4ce1-a1ab-82c2c608fdfc	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		c43c41a9-9bcc-4a5c-8fc2-f1de27bfd997
+0e48cb83-1563-4b43-b733-30a1eba27e5c	Have you visited or lived in the United Kingdom between 1980 and 1996 for a cumulative period of 3 months or longer? OR Have you visited or lived in France since 1980 for a cumulative period of 5 years or longer?		4cf0bf46-7cab-4e85-942a-6f02ddc8d9e2
+c8b5f0e1-1ba5-48bd-b037-d3559eef4287	Yes		0e48cb83-1563-4b43-b733-30a1eba27e5c
+40c90a8c-908c-473e-8d28-82fe9eaf96d8	No		0e48cb83-1563-4b43-b733-30a1eba27e5c
+b55f8f1a-2119-461e-9e2b-d2706399c996	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		c8b5f0e1-1ba5-48bd-b037-d3559eef4287
+6011a39e-3f93-431a-a5e4-3418ff7e7dc7	Are you experiencing heavy menstrual flow or cramps🙇‍♀️? OR Are you pregnant🤰 or breastfeeding🤱 your child now?		40c90a8c-908c-473e-8d28-82fe9eaf96d8
+3ed23379-9425-406e-8c4a-0de2084de049	Yes		6011a39e-3f93-431a-a5e4-3418ff7e7dc7
+31469899-4a63-47b0-b35d-2538972b941f	No		6011a39e-3f93-431a-a5e4-3418ff7e7dc7
+23aa9c4a-34c9-4d65-8a8c-2760693ce1c6	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		3ed23379-9425-406e-8c4a-0de2084de049
+9c97619b-92c9-40eb-9d86-623f99923a79	Have you done any dental work🦷* recently? \n\n Dental work🦷 includes: \n • Scaling or dental filling one day before donating. \n • Tooth extraction 3 days before donating. \n • Root canal treatment one week before donating. \n • Wisdom tooth extraction one month before donating. \n • Multiple wisdom teeth extractions 3 months before donating.		31469899-4a63-47b0-b35d-2538972b941f
+9dc26b86-108c-4c36-9768-d0647a2ee11e	Yes		9c97619b-92c9-40eb-9d86-623f99923a79
+fdb92660-a966-4912-baeb-f3f7527dcfca	No		9c97619b-92c9-40eb-9d86-623f99923a79
+c7e97353-51d6-4e8e-b629-beea160ee470	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		9dc26b86-108c-4c36-9768-d0647a2ee11e
+06497b29-58ac-45cf-af88-8ac031e27089	Have you had a piercing or a tattoo recently, done with non-disposable needles💉💉💉? \n Note: If you have done a piercing/tattoo with a STERILE DISPOSABLE needle, it is OK to donate.		fdb92660-a966-4912-baeb-f3f7527dcfca
+a8103017-ca02-41ca-b2bf-c4492e148a80	Yes		06497b29-58ac-45cf-af88-8ac031e27089
+9001f0d9-6713-4f37-b409-bef41e2c3707	No		06497b29-58ac-45cf-af88-8ac031e27089
+5524ce97-81e9-4fef-8163-d589e40b7600	No		085d2d88-09e3-4e41-be88-c1b6573fd030
+c6e702dc-5b90-45f8-8ac1-59c66598f733	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		c4bce6e1-0cb7-427f-950a-492470bff8c3
+97792dad-1e0c-4402-9d68-eec064cbe238	Have you travelled overseas✈️ to malaria endemic areas🦟 in the past 4 months? Check out hsa.gov.sg/travel_deferral for the latest list of malaria endemic areas.		5524ce97-81e9-4fef-8163-d589e40b7600
+be0761a8-bbac-4e75-baa9-084904ca1852	Yes		97792dad-1e0c-4402-9d68-eec064cbe238
+6fb98aec-cc3b-4053-b4ca-8274055512ea	No		97792dad-1e0c-4402-9d68-eec064cbe238
+0ca97437-6c59-4c45-9aad-4edeaf387823	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		be0761a8-bbac-4e75-baa9-084904ca1852
+9f71e085-2d52-4b60-966b-61900e1e439d	Yay! you have passed our basic requirement test! It's most likely that you can donate on our next drive! \n However, there are other factors to consider before donating blood. \n Click on the other options to learn more about possible deferral reasons!		6fb98aec-cc3b-4053-b4ca-8274055512ea
+d230b7d8-7c6d-469f-84bb-cc3dcc36b902	Sorry you did not pass the eligibility test :( The question above was why you are unable to donate. \nTo find out more, please visit https://www.hsa.gov.sg/blood-donation/can-i-donate.  \n\nDo click on the other options to learn about other possible deferral reasons!		c9e0706f-c559-47d6-a747-e32b6d54f828
+9c09e09b-034f-4c6b-af6a-d38fd9531ebd	I had COVID and/or taken COVID vaccine🦠		c6f41c3c-1cc4-47c3-af59-1d2dce07412e
+4cdd87d4-c126-4304-9e78-cb197b93ead0	I was seriously unwell the past 6 months🤒		c6f41c3c-1cc4-47c3-af59-1d2dce07412e
+5cc558a6-20d1-49a0-aa06-fddf3c59eee4	When is your next blood drive? 		228e31ea-8060-4f51-8ec0-479c6e636577
+fe9b5435-8b63-4f12-8dff-2c1701e5bae2	Long-term reasons why you might be unable to donate		228e31ea-8060-4f51-8ec0-479c6e636577
+7d767eee-a2ef-4309-9ca8-bc3cfdebaeeb	Are you above 45kg?🙂		0d8a5cb6-a297-484a-970d-2c37fa02a9c6
+c9e0706f-c559-47d6-a747-e32b6d54f828	No		7d767eee-a2ef-4309-9ca8-bc3cfdebaeeb
+58f14f0e-fb93-4696-b6f2-e50bb551538d	If you had COVID-19: \n • Please wait 28 days after clinical recovery. This is to ensure that you have recovered completely and is fit for donation. \n\n If you have taken vaccines that do not contain live agents (e.g. MODERNA, Pfizer-BioNTech vaccine): \n\n Please postphone your donation: \n\n At least 1 week after vaccination with: \n • No side effects \n\n At least 1 week after vaccination with*: \n • Muscle ache or pain at injection site(localized) \n\n At least 1 month after vaccination with*: \n• Generalized muscle/joint pain \n • Fever or chills \n • Rashes \n • Lymph node swelling \n\n * Count after side effects have resolved. \n\n		9c09e09b-034f-4c6b-af6a-d38fd9531ebd
+c4306816-c393-4175-a6e9-3899782fac4c	What were you sick with?		4cdd87d4-c126-4304-9e78-cb197b93ead0
+908be86e-6ebe-4564-9a8c-6f935112d0c7	Chickenpox, Measles or Mumps🐔?		c4306816-c393-4175-a6e9-3899782fac4c
+d9ffe29c-5c2a-42d5-8aae-830b900e00f4	Cold, Flu and Sore Throat🤧		c4306816-c393-4175-a6e9-3899782fac4c
+407d2029-85b1-4c0c-9aa0-6d76303be431	I have taken medication/antibiotics the past 6 months💊		c4306816-c393-4175-a6e9-3899782fac4c
+c3f23c89-6066-4aef-9db6-b40abe95b92d	I am diagnosed with a mental health condition💚		c4306816-c393-4175-a6e9-3899782fac4c
+89771d81-99bb-48a4-be27-370a74556682	I am sexually active🤫		c4306816-c393-4175-a6e9-3899782fac4c
+a337be5a-f77e-4cb3-88f5-fd14f0636cba	I recently gotten a vaccine/immunisation💉		c4306816-c393-4175-a6e9-3899782fac4c
+ded0ff9a-476f-47d1-b52c-970b08988357	If you have chickenpox, rubella, measles or mumps, you can donate blood 4 weeks after full recovery. \n\nIf you had close contact with someone diagnosed to have chickenpox, measles, rubella or hand foot and mouth disease, you can donate 4 weeks after the date of last contact. \n\n		908be86e-6ebe-4564-9a8c-6f935112d0c7
+5bf8052e-b13b-4a3b-8e33-acc91dbc2fe4	You should not donate blood if you have an Upper Respiratory Tract Infection(URTI), such as cold, flu, sore throat or any other symptoms of infection. \n\n You should wait for 1 week after recovery, as it may be harmful to you and the recipients if you donate blood when you have an infection. \n\n If you happen to have fever, the waiting period is increased to 4 weeks.		d9ffe29c-5c2a-42d5-8aae-830b900e00f4
+8de96211-4417-426f-874e-9cb214532ec9	Do NOT stop taking your medication. \n You should not discontinue or stop taking medications prescribed or recommended by your physicians in order to donate blood.\n If the medication you are taking is not in this list or if you need further clarification, please call 6213 0626 and speak to our medical staff to determine if you are eligible to donate. \n\n Please postpone your donation: \n At least 1 day(24h) after: \n• Taking Antibiotics for Acne \n\n At least 3 days after: \n • Taking most Traditional Chinese Medicine \n • Aspirin \n • Most prescription medication (excluding paracetamol, anti-histamines or sedatives) \n\n At least 1 week after: \n • Taking antibiotics \n\n At least 4 weeks after: \n • Isotretinoin \n\n For Paracetamol/Panadol: \n • You may donate blood if you are taking paracetamol for pain relief (not for fever or flu), provided you are well on the day of the donation and do not experience any symptoms.		407d2029-85b1-4c0c-9aa0-6d76303be431
+5389033d-9e2b-4195-99cb-fd432a67562c	If you have anxiety disorder, obsessive disorder or depression, you may be able to donate blood if you have been certified mentally fit for blood donation by your treating psychiatrist and you are well on the day of donation. \n\n It is important that you are able to consent to the donation process and fully understand all the information and questions contained in the Donor Health Assessment Questionnaire and Declaration Form. This is a statutory declaration that carries legal responsibilities and implications. \n\n For more information or if you need further clarification, please call 6213 0626 and speak to our medical staff.		c3f23c89-6066-4aef-9db6-b40abe95b92d
+ce42add2-2f02-4cf9-8a4d-47cf6a4df4d1	You should NOT donate blood for at least 12 months after the last sexual contact if: \n • You are a female donor who has engaged in sexual activity with a man whom you know, or suspect, to have had sex with another man. \n • You have engaged in sexual activity with someone whom you know, or suspect, to have AIDS or HIV. \n • You have paid for sex. \n • You have engaged in sexual activity with any of the following: \n • Someone whom you have known for 6 months or less. \n • More than one partner. \n • Someone diagnosed with syphilis, gonorrhoea or any other sexually transmitted diseases.\n\n Note: The term 'sexual activity' means any of the activities below whether or not a condom or other protection was used: \n• Vaginal sex \n • Oral sex \n • Anal sex		89771d81-99bb-48a4-be27-370a74556682
+b04eacca-5814-4890-8ad8-5419e8f77afc	If the vaccine or immunisation is not in this list, or if you need further clarification, please call 6213 0626 to determine if you are eligible to donate. \n\n As long as you are well at the time of donation, there is no waiting period or deferral if you received the following vaccines: \n • Anthrax \n • Cholera \n • Diphtheria \n • Hepatitis A \n • HPV (cervical cancer) \n • Influenza / Flu vaccine (by injection) \n • Meningococcal \n • Pertussis \n • Pneumococcal \n • Polio (by injection) \n • Rabies \n • Tetanus \n • Typhoid (by injection) \n\n Wait for at least 2 weeks after: \n• Hepatitis B vaccine \n\n Wait for at least 4 weeks after: \n • BCG \n • Chickenpox \n • Dengue \n • German measles (rubella) \n • Influenza / Flu vaccine (by intranasal spray) \n • MMR (measles, mumps, rubella) \n • Shingles (varicella zoster) \n • Yellow fever \n\n Wait for at least 12 months after: \n• Hepatitis B immune globulin (post exposure) \n • Human rabies immunoglobulin (a component of rabies post-exposure vaccination)		a337be5a-f77e-4cb3-88f5-fd14f0636cba
+3ae771fa-1c83-44b8-8a54-0f406cfb5f94	You cannot donate blood if you have any of the following conditions: \n\n Heart or lung disease (patients with asymptomatic asthma can still give blood) \n • Previous/current history of cancer \n• Unstable High blood pressure condition and taking more than one medication (except diuretics) \n• Diabetes \n• Abnormal bleeding tendencies or blood disorder \n• AIDS or symptoms of AIDS, such as unexplained fevers, severe night sweats,unexpected weight loss, swollen glands or chronic diarrhoea \n• Uncontrolled seizures after infancy \n• Hepatitis B or C \n• Syphilis \n• Underwent major surgery 6 to 12 months ago \nNote: This list is non-exhaustive and if you need further clarification, please call 6213 0626 to determine if you are eligible to donate.		fe9b5435-8b63-4f12-8dff-2c1701e5bae2
+64e903ef-986e-4da1-885f-44d271c52969	Yes		7d767eee-a2ef-4309-9ca8-bc3cfdebaeeb
+935fa076-482e-47d9-a99f-9e467fa75270	Am I eligible to donate blood?		228e31ea-8060-4f51-8ec0-479c6e636577
+5ef0dad9-4941-4811-9216-bf87748eb491	Thank you for your interest! Our next blood drive will be at Cheng San CC, on the 4th of June from 10am to 4pm! \n Sign up at the link here: https://docs.google.com/forms/d/e/1FAIpQLSdqjVInQpW9a0OY8TJw0e6H1GpBZlPFppb88j3oXeww9Tppfg/viewform  \netc etc\n Stay Tuned to our instagram account @projectbloodsg for updates:)		5cc558a6-20d1-49a0-aa06-fddf3c59eee4
+228e31ea-8060-4f51-8ec0-479c6e636577	Welcome!! I am Project Blood SG's TeleBot! \nBefore we begin, I'll like to advise you on the extra precautionary measures Project Blood SG will be implementing:\n\nPlease be informed that any person who is unwell or with risk of exposure to COVID-19 in the last 5 days will not be allowed to enter our premises due to current COVID-19 situation. \n\nDonor who had a positive COVID-19 PCR/ Antigen Rapid Test (ART) in the last 28 days should not visit the blood bank. They can come back for donation 28 days after the first positive PCR or ART result.\n\nFor more info regarding HSA's policy on vaccines, click here: https://www.hsa.gov.sg/blood-donation/covid-19-vaccine\n\nNow, what will you like to find out?\n	hello	\N
+5fea2dec-eb9d-43ec-8c12-a7d6b9664db7	AY22/23 Recruitment		228e31ea-8060-4f51-8ec0-479c6e636577
+1f43583c-6ca1-414f-9c0b-c3a9538d7039	Thank you for your interest:))\n\nPlease sign up through this link: https://docs.google.com/forms/d/e/1FAIpQLSdMgDcDRL1jUI0NYSpppc3Yirib6FG-uwRFL58YFXcxkoOjwQ/viewform \n\nIn the meantime, do give us a follow on ig @projectbloodsg!\n\nIf you have any questions, feel free to dm @merhureee!		5fea2dec-eb9d-43ec-8c12-a7d6b9664db7
+\.
+
+
+--
+-- Name: message message_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.message
+    ADD CONSTRAINT message_pkey PRIMARY KEY (message_id);
+
+
+--
+-- Name: message message_parent_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.message
+    ADD CONSTRAINT message_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.message(message_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

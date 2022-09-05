@@ -46,4 +46,4 @@ body: {
 update a message with id
 
 DELETE /messages/id/:id
-update a message with id
+delete a message with id
